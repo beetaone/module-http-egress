@@ -4,7 +4,7 @@
 | -------------- | --------------------------------- |
 | Name           | Webhook Egress                    |
 | Version        | v0.0.1                            |
-| Dockerhub Link | weevenetwork/weeve-webhook-egress |
+| Dockerhub Link | weevenetwork/webhook-egress       |
 | Authors        | Jakub Grzelak                     |
 
 
@@ -92,7 +92,7 @@ Example:
 version: "3"
 services:
   webhook:
-    image: weevenetwork/weeve-webhook-egress
+    image: weevenetwork/webhook-egress
     environment:
       MODULE_NAME: webhook
       EGRESS_WEBHOOK_URL: https://hookb.in/r1YwjDyn7BHzWWJVK8Gq
