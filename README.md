@@ -23,7 +23,7 @@
 
 ## Description
 
-Webhook Egress is a module responsible for passing all input data to a specified URL or a Webhook address.
+Webhook Egress is a module responsible for passing all input data to a specified URL or a Webhook address by HTTP ReST API.
 This module is containerized using Docker.
 
 
@@ -31,6 +31,7 @@ This module is containerized using Docker.
 
 * Egress data from data service
 * Send data to a specified URL and Webhook
+* Uses HTTP ReST API
 
 
 ## Environment Variables
@@ -39,12 +40,12 @@ This module is containerized using Docker.
 
 The following module configurations can be provided in a data service designer section on weeve platform:
 
-The following module configurations can be provided in a data service designer section on weeve platform:
-
-
-| Name                | Environment Variables | Type    | Description                                                          |
-| ------------------- | --------------------- | ------- | -------------------------------------------------------------------- |
-| Egress Webhook URL  | EGRESS_WEBHOOK_URL    | string  | Webhook URL or other HTTP ReST endpoint address where data is sent.  | 
+| Name                | Environment Variables | Type    | Description                                                                   |
+| ------------------- | --------------------- | ------- | ----------------------------------------------------------------------------- |
+| Egress Webhook URL  | EGRESS_WEBHOOK_URL    | string  | Webhook URL or other HTTP ReST endpoint address where data is sent.           |
+| Method              | METHOD                | string  | ReST API request method: POST or GET.                                         | 
+| Input Labels        | LABELS                | string  | List of comma (,) separated labels to read from a previous module. Leave empty ("") to keep all data.  | 
+| Timestamp           | TIMESTAMP             | string  | Date for a timestamp, if left empty then this module adds a timestamp automatically.  | 
 
 Moreover, other features required for establishing the inter-container communication between modules in a data service are set by weeve agent.
 
@@ -97,6 +98,9 @@ services:
       MODULE_NAME: webhook
       EGRESS_WEBHOOK_URL: https://hookb.in/r1YwjDyn7BHzWWJVK8Gq
       HANDLER_PORT: 80
+      METHOD: POST
+      LABELS: ""
+      TIMESTAMP: ""
     ports:
       - 5000:80
 ```
