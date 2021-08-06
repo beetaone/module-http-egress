@@ -7,8 +7,6 @@
 | Dockerhub Link | weevenetwork/webhook-egress |
 | Authors        | Jakub Grzelak               |
 
-
-
 - [Webhook Egress](#webhook-egress)
   - [Description](#description)
   - [Features](#features)
@@ -20,7 +18,6 @@
   - [Output](#output)
   - [Docker Compose Example](#docker-compose-example)
 
-
 ## Description
 
 Webhook Egress is a module responsible for passing all input data to a specified URL or a Webhook address by HTTP ReST API.
@@ -29,13 +26,11 @@ then data are passed as URL's query string parameters.
 
 This module is containerized using Docker.
 
-
 ## Features
 
-* Egress data from data service
-* Send data to a specified URL and Webhook
-* Uses HTTP ReST API
-
+- Egress data from data service
+- Send data to a specified URL and Webhook
+- Uses HTTP ReST API
 
 ## Environment Variables
 
@@ -48,17 +43,15 @@ The following module configurations can be provided in a data service designer s
 | Egress Webhook URL | EGRESS_WEBHOOK_URL    | string | Webhook URL or other HTTP ReST endpoint address where data is sent.                                   |
 | Method             | METHOD                | string | ReST API request method: POST or GET.                                                                 |
 | Input Labels       | LABELS                | string | List of comma (,) separated labels to read from a previous module. Leave empty ("") to keep all data. |
-| Timestamp          | TIMESTAMP             | string | Date for a timestamp, if left empty then this module adds a timestamp automatically.                  |
+| Timestamp          | TIMESTAMP             | string | Label for timestamp field for incoming data. If left empty, webhook module will add the timestamp.    |
 
 Moreover, other features required for establishing the inter-container communication between modules in a data service are set by weeve agent.
-
 
 ### Set by the weeve Agent on the edge-node
 
 | Environment Variables | type   | Description        |
 | --------------------- | ------ | ------------------ |
 | MODULE_NAME           | string | Name of the module |
-
 
 ## Dependencies
 
@@ -73,11 +66,13 @@ python-decouple==3.4
 Input to this module is JSON body single object or array of objects:
 
 Example:
+
 ```node
 {
   temperature: 15,
 }
 ```
+
 ```node
 [
   {
@@ -88,8 +83,8 @@ Example:
   },
   {
     temperature: 25,
-  }
-]
+  },
+];
 ```
 
 ## Output
@@ -97,11 +92,13 @@ Example:
 Output to this module is identical JSON body as input that is sent to a chosen endpoint.
 
 Example:
+
 ```node
 {
   temperature: 15,
 }
 ```
+
 ```node
 [
   {
@@ -112,8 +109,8 @@ Example:
   },
   {
     temperature: 25,
-  }
-]
+  },
+];
 ```
 
 ## Docker Compose Example
