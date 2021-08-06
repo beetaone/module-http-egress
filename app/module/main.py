@@ -1,7 +1,7 @@
 from requests import post, get
 from app.config import APPLICATION
 import time
-from logging import info
+from json import dumps
 """
 All logic related to the module's main application
 Mostly only this file requires changes
@@ -27,24 +27,24 @@ def module_main(parsed_data):
         [string, string]: [data, error]
     """
     try:
-
+        # build return body
         if type(parsed_data) == dict:
             return_body = processData(parsed_data)
         else:
             return_body = []
             for data in parsed_data:
                 return_body.append(processData(data))
-        # build return body
 
         if METHOD == "POST":
             post(url=f"{EGRESS_WEBHOOK_URL}", json=return_body,
                  headers={'Content-Type': 'application/json'})
+
         elif METHOD == "GET":
             if type(parsed_data) == dict:
                 get(url=f"{EGRESS_WEBHOOK_URL}", params=return_body)
             else:
-                get(url=f"{EGRESS_WEBHOOK_URL}", params={"data":return_body})
-
+                get(url=f"{EGRESS_WEBHOOK_URL}",
+                    params={"data": dumps(return_body)})
 
         return return_body, None
     except Exception:
