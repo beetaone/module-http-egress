@@ -1,11 +1,11 @@
 # Webhook Egress
 
-|                |                                   |
-| -------------- | --------------------------------- |
-| Name           | Webhook Egress                    |
-| Version        | v0.0.1                            |
-| Dockerhub Link | weevenetwork/webhook-egress       |
-| Authors        | Jakub Grzelak                     |
+|                |                             |
+| -------------- | --------------------------- |
+| Name           | Webhook Egress              |
+| Version        | v0.0.1                      |
+| Dockerhub Link | weevenetwork/webhook-egress |
+| Authors        | Jakub Grzelak               |
 
 
 
@@ -25,8 +25,8 @@
 
 Webhook Egress is a module responsible for passing all input data to a specified URL or a Webhook address by HTTP ReST API.
 Two ReST API methods are supported: POST an GET. If POST is chosen, then data are passed to a specified URL. If GET is chosen,
-then data are passed as URL's query string parameters. Note that string parameters accept only a single body dictionary, so if an array of objects
-is passed with GET method, then POST method will be forced instead.
+then data are passed as URL's query string parameters.
+
 This module is containerized using Docker.
 
 
@@ -43,21 +43,21 @@ This module is containerized using Docker.
 
 The following module configurations can be provided in a data service designer section on weeve platform:
 
-| Name                | Environment Variables | Type    | Description                                                                   |
-| ------------------- | --------------------- | ------- | ----------------------------------------------------------------------------- |
-| Egress Webhook URL  | EGRESS_WEBHOOK_URL    | string  | Webhook URL or other HTTP ReST endpoint address where data is sent.           |
-| Method              | METHOD                | string  | ReST API request method: POST or GET.                                         | 
-| Input Labels        | LABELS                | string  | List of comma (,) separated labels to read from a previous module. Leave empty ("") to keep all data.  | 
-| Timestamp           | TIMESTAMP             | string  | Date for a timestamp, if left empty then this module adds a timestamp automatically.  | 
+| Name               | Environment Variables | Type   | Description                                                                                           |
+| ------------------ | --------------------- | ------ | ----------------------------------------------------------------------------------------------------- |
+| Egress Webhook URL | EGRESS_WEBHOOK_URL    | string | Webhook URL or other HTTP ReST endpoint address where data is sent.                                   |
+| Method             | METHOD                | string | ReST API request method: POST or GET.                                                                 |
+| Input Labels       | LABELS                | string | List of comma (,) separated labels to read from a previous module. Leave empty ("") to keep all data. |
+| Timestamp          | TIMESTAMP             | string | Date for a timestamp, if left empty then this module adds a timestamp automatically.                  |
 
 Moreover, other features required for establishing the inter-container communication between modules in a data service are set by weeve agent.
 
 
 ### Set by the weeve Agent on the edge-node
 
-| Environment Variables | type   | Description                            |
-| --------------------- | ------ | -------------------------------------- |
-| MODULE_NAME           | string | Name of the module                     |
+| Environment Variables | type   | Description        |
+| --------------------- | ------ | ------------------ |
+| MODULE_NAME           | string | Name of the module |
 
 
 ## Dependencies
