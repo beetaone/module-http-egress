@@ -27,14 +27,13 @@ def module_main(parsed_data):
         [string, string]: [data, error]
     """
     try:
-
+        # build return body
         if type(parsed_data) == dict:
             return_body = processData(parsed_data)
         else:
             return_body = []
             for data in parsed_data:
                 return_body.append(processData(data))
-        # build return body
 
         if METHOD == "POST":
             post(url=f"{EGRESS_WEBHOOK_URL}", json=return_body,
@@ -43,8 +42,7 @@ def module_main(parsed_data):
             if type(parsed_data) == dict:
                 get(url=f"{EGRESS_WEBHOOK_URL}", params=return_body)
             else:
-                get(url=f"{EGRESS_WEBHOOK_URL}", params={"data":return_body})
-
+                post(url=f"{EGRESS_WEBHOOK_URL}", json=return_body, headers={'Content-Type': 'application/json'})
 
         return return_body, None
     except Exception:

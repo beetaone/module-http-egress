@@ -25,7 +25,8 @@
 
 Webhook Egress is a module responsible for passing all input data to a specified URL or a Webhook address by HTTP ReST API.
 Two ReST API methods are supported: POST an GET. If POST is chosen, then data are passed to a specified URL. If GET is chosen,
-then data are passed as URL's query string parameters.
+then data are passed as URL's query string parameters. Note that string parameters accept only a single body dictionary, so if an array of objects
+is passed with GET method, then POST method will be forced instead.
 This module is containerized using Docker.
 
 
@@ -77,6 +78,19 @@ Example:
   temperature: 15,
 }
 ```
+```node
+[
+  {
+    temperature: 15,
+  },
+  {
+    temperature: 21,
+  },
+  {
+    temperature: 25,
+  }
+]
+```
 
 ## Output
 
@@ -87,6 +101,19 @@ Example:
 {
   temperature: 15,
 }
+```
+```node
+[
+  {
+    temperature: 15,
+  },
+  {
+    temperature: 21,
+  },
+  {
+    temperature: 25,
+  }
+]
 ```
 
 ## Docker Compose Example
