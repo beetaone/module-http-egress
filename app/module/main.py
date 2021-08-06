@@ -1,7 +1,7 @@
 from requests import post, get
 from app.config import APPLICATION
 import time
-
+from logging import info
 """
 All logic related to the module's main application
 Mostly only this file requires changes
@@ -15,6 +15,7 @@ else:
     LABELS = None
 TIMESTAMP = APPLICATION['TIMESTAMP']
 
+
 def module_main(parsed_data):
     """
     Egresses data to a chosen Webhook with POST or GET methods.
@@ -26,27 +27,52 @@ def module_main(parsed_data):
         [string, string]: [data, error]
     """
     try:
-        # build return body
-        return_body = {}
-        if LABELS:
-            for label in LABELS:
-                # check if selected input label is in input data
-                if label in parsed_data.keys():
-                    return_body[label] = parsed_data[label]
-        else:
-            return_body = parsed_data
 
-        # add timestamp
-        if not TIMESTAMP:
-            return_body['timestamp'] = time.time()
+        if type(parsed_data) == dict:
+            return_body = processData(parsed_data)
         else:
-            return_body['timestamp'] = TIMESTAMP
+            return_body = []
+            for data in parsed_data:
+                return_body.append(processData(data))
+        # build return body
 
         if METHOD == "POST":
-            post(url=f"{EGRESS_WEBHOOK_URL}", json=return_body, headers={'Content-Type': 'application/json'})
+            post(url=f"{EGRESS_WEBHOOK_URL}", json=return_body,
+                 headers={'Content-Type': 'application/json'})
         elif METHOD == "GET":
-            get(url=f"{EGRESS_WEBHOOK_URL}", params=return_body)
+            if type(parsed_data) == dict:
+                get(url=f"{EGRESS_WEBHOOK_URL}", params=return_body)
+            else:
+                get(url=f"{EGRESS_WEBHOOK_URL}", params={"data":return_body})
+
 
         return return_body, None
     except Exception:
         return None, "Unable to perform the module logic"
+
+
+def processData(parsed_data):
+    return_body = {}
+    if LABELS:
+        for label in LABELS:
+            # check if selected input label is in input data
+            if label in parsed_data.keys():
+                return_body[label] = parsed_data[label]
+    else:
+        return_body = parsed_data
+
+    # add timestamp
+    if not TIMESTAMP:
+        return_body['timestamp'] = time.time()
+    else:
+        return_body = removekey(return_body, TIMESTAMP)
+        return_body['timestamp'] = parsed_data[TIMESTAMP]
+    return return_body
+
+
+def removekey(d, key):
+    r = dict(d)
+    if not key in d:
+        return r
+    del r[key]
+    return r
