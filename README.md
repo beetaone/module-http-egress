@@ -1,15 +1,15 @@
-# Webhook Egress
+# HTTP Egress
 
 |                |                                   |
 | -------------- | --------------------------------- |
-| Name           | Webhook Egress                    |
+| Name           | HTTP Egress                       |
 | Version        | v0.0.1                            |
-| Dockerhub Link | weevenetwork/webhook-egress       |
+| Dockerhub Link | weevenetwork/http-egress       |
 | Authors        | Jakub Grzelak                     |
 
 
 
-- [Webhook Egress](#webhook-egress)
+- [HTTP Egress](#http-egress)
   - [Description](#description)
   - [Features](#features)
   - [Environment Variables](#environment-variables)
@@ -23,7 +23,7 @@
 
 ## Description
 
-Webhook Egress is a module responsible for passing all input data to a specified URL or a Webhook address by HTTP ReST API.
+HTTP Egress is a module responsible for passing all input data to a specified URL or a Webhook address by HTTP ReST API.
 Two ReST API methods are supported: POST an GET. If POST is chosen, then data are passed to a specified URL. If GET is chosen,
 then data are passed as URL's query string parameters. Note that string parameters accept only a single body dictionary, so if an array of objects
 is passed with GET method, then POST method will be forced instead.
@@ -122,9 +122,9 @@ Example:
 version: "3"
 services:
   webhook:
-    image: weevenetwork/webhook-egress
+    image: weevenetwork/http-egress
     environment:
-      MODULE_NAME: webhook
+      MODULE_NAME: http-egress
       EGRESS_WEBHOOK_URL: https://hookb.in/r1YwjDyn7BHzWWJVK8Gq
       HANDLER_PORT: 80
       METHOD: POST

@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      MODULE_NAME: webhook
+      MODULE_NAME: http-egress
       EGRESS_WEBHOOK_URL: https://hookb.in/b99XkkOQz1uKGq00GBgg
       HANDLER_PORT: 80
       METHOD: GET
