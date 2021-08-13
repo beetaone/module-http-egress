@@ -1,5 +1,5 @@
 SHELL := /bin/bash
-MODULE=weevenetwork/webhook-egress
+MODULE=weevenetwork/http-egress
 create_image:
 	docker build -t ${MODULE} .
 .phony: create_image
