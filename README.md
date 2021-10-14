@@ -3,7 +3,7 @@
 |                |                                   |
 | -------------- | --------------------------------- |
 | Name           | HTTP Egress                       |
-| Version        | v0.0.1                            |
+| Version        | v0.0.2                            |
 | Dockerhub Link | weevenetwork/http-egress       |
 | Authors        | Jakub Grzelak                     |
 
@@ -54,6 +54,11 @@ Moreover, other features required for establishing the inter-container communica
 | Environment Variables | type   | Description        |
 | --------------------- | ------ | ------------------ |
 | MODULE_NAME           | string | Name of the module |
+| MODULE_TYPE           | string | Type of the module (ingress, processing, egress)  |
+| INGRESS_HOST          | string | Host to which data will be ingressed |
+| INGRESS_PORT          | string | Port to which data will be ingressed |
+| INGRESS_PATH          | string | Path to which data will be ingressed |
+
 
 ## Dependencies
 
@@ -124,8 +129,9 @@ services:
     image: weevenetwork/http-egress
     environment:
       MODULE_NAME: http-egress
-      EGRESS_WEBHOOK_URL: https://hookb.in/r1YwjDyn7BHzWWJVK8Gq
-      HANDLER_PORT: 80
+      MODULE_TYPE: 80
+      EGRESS_URL: https://hookb.in/r1YwjDyn7BHzWWJVK8Gq
+      INGRESS_PORT: 80
       METHOD: POST
       LABELS: ""
       TIMESTAMP: ""

@@ -7,7 +7,7 @@ All logic related to the module's main application
 Mostly only this file requires changes
 """
 
-EGRESS_WEBHOOK_URL = APPLICATION['EGRESS_WEBHOOK_URL']
+EGRESS_URL = APPLICATION['EGRESS_URL']
 METHOD = APPLICATION['METHOD']
 if APPLICATION['LABELS']:
     LABELS = [label.strip() for label in APPLICATION['LABELS'].split(',')]
@@ -36,14 +36,14 @@ def module_main(parsed_data):
                 return_body.append(processData(data))
 
         if METHOD == "POST":
-            post(url=f"{EGRESS_WEBHOOK_URL}", json=return_body,
+            post(url=f"{EGRESS_URL}", json=return_body,
                  headers={'Content-Type': 'application/json'})
 
         elif METHOD == "GET":
             if type(parsed_data) == dict:
-                get(url=f"{EGRESS_WEBHOOK_URL}", params=return_body)
+                get(url=f"{EGRESS_URL}", params=return_body)
             else:
-                get(url=f"{EGRESS_WEBHOOK_URL}",
+                get(url=f"{EGRESS_URL}",
                     params={"data": dumps(return_body)})
 
         return return_body, None

@@ -2,12 +2,13 @@ version: "3"
 services:
   webhook:
     build:
-      context: .
+      context: ./image
       dockerfile: Dockerfile
     environment:
       MODULE_NAME: http-egress
-      EGRESS_WEBHOOK_URL: https://hookb.in/b99XkkOQz1uKGq00GBgg
-      HANDLER_PORT: 80
+      MODULE_TYPE: EGRESS
+      EGRESS_URL: https://hookb.in/b99XkkOQz1uKGq00GBgg
+      INGRESS_PORT: 80
       METHOD: GET
       LABELS: "temp"
     ports:
