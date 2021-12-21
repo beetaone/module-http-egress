@@ -130,7 +130,7 @@ services:
     environment:
       MODULE_NAME: http-egress
       MODULE_TYPE: 80
-      EGRESS_URL: https://hookb.in/r1YwjDyn7BHzWWJVK8Gq
+      EGRESS_WEBHOOK_URL: https://hookb.in/r1YwjDyn7BHzWWJVK8Gq
       INGRESS_PORT: 80
       METHOD: POST
       LABELS: ""
