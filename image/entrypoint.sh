@@ -7,6 +7,14 @@ set -o errexit -o pipefail -o noclobber -o nounset
 echo "Entrypoint script for http-egress"
 echo "Container args: $@"
 
+echo "Variables are set as following:"
+echo "MODULE_NAME=$MODULE_NAME"
+echo "MODULE_TYPE=$MODULE_TYPE"
+echo "EGRESS_URL=$EGRESS_URL"
+echo "EGRESS_WEBHOOK_URL=$EGRESS_WEBHOOK_URL"
+echo "INGRESS_PORT=$INGRESS_PORT"
+echo "INGRESS_PATH=$INGRESS_PATH"
+
 ########################
 # STANDARD ENVIRONMENT #
 ########################

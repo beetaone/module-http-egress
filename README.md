@@ -1,13 +1,11 @@
 # HTTP Egress
 
-|                |                                   |
-| -------------- | --------------------------------- |
-| Name           | HTTP Egress                       |
-| Version        | v0.0.2                            |
-| Dockerhub Link | weevenetwork/http-egress       |
-| Authors        | Jakub Grzelak                     |
-
-
+|                |                          |
+| -------------- | ------------------------ |
+| Name           | HTTP Egress              |
+| Version        | v0.0.2                   |
+| Dockerhub Link | weevenetwork/http-egress |
+| Authors        | Jakub Grzelak            |
 
 - [HTTP Egress](#http-egress)
   - [Description](#description)
@@ -51,14 +49,13 @@ Moreover, other features required for establishing the inter-container communica
 
 ### Set by the weeve Agent on the edge-node
 
-| Environment Variables | type   | Description        |
-| --------------------- | ------ | ------------------ |
-| MODULE_NAME           | string | Name of the module |
-| MODULE_TYPE           | string | Type of the module (ingress, processing, egress)  |
-| INGRESS_HOST          | string | Host to which data will be ingressed |
-| INGRESS_PORT          | string | Port to which data will be ingressed |
-| INGRESS_PATH          | string | Path to which data will be ingressed |
-
+| Environment Variables | type   | Description                                      |
+| --------------------- | ------ | ------------------------------------------------ |
+| MODULE_NAME           | string | Name of the module                               |
+| MODULE_TYPE           | string | Type of the module (ingress, processing, egress) |
+| INGRESS_HOST          | string | Host to which data will be ingressed             |
+| INGRESS_PORT          | string | Port to which data will be ingressed             |
+| INGRESS_PATH          | string | Path to which data will be ingressed             |
 
 ## Dependencies
 
@@ -137,4 +134,13 @@ services:
       TIMESTAMP: ""
     ports:
       - 5000:80
+```
+
+# Test with curl
+
+```bash
+curl --header "Content-Type: application/json" \
+                --request POST \
+                --data '{"random hash":"f36940fb3203f6e1b232f84eb3f796049c9cf1761a9297845e5f2453eb036f01"}' \
+                localhost:5000
 ```
