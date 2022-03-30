@@ -33,6 +33,15 @@ environments:
       - POST
       - GET
     name: Method
+  - key: CONTENT_TYPE_JSON
+    description: Send JSON Content Type in Header of Request
+    value: ''
+    default: no
+    type: enum
+    options:
+      - yes
+      - no
+    name: Content_Type_Json
   - key: LABELS
     description: List of comma (,) separated labels to read from a previous module. Leave empty ("") to keep all data.
     value: ''

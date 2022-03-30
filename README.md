@@ -56,6 +56,8 @@ Moreover, other features required for establishing the inter-container communica
 | INGRESS_HOST          | string | Host to which data will be ingressed             |
 | INGRESS_PORT          | string | Port to which data will be ingressed             |
 | INGRESS_PATH          | string | Path to which data will be ingressed             |
+| CONTENT_TYPE_JSON          | string | Determines if during request 'Content-Type': 'application/json' will be passed on in request or not, default is no           |
+
 
 ## Dependencies
 
@@ -132,6 +134,7 @@ services:
       METHOD: POST
       LABELS: ""
       TIMESTAMP: ""
+      CONTENT_TYPE_JSON: no
     ports:
       - 5000:80
 ```
