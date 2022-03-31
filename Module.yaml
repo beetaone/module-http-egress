@@ -41,7 +41,7 @@ environments:
     options:
       - yes
       - no
-    name: Content_Type_Json
+    name: Content Type as JSON
   - key: LABELS
     description: List of comma (,) separated labels to read from a previous module. Leave empty ("") to keep all data.
     value: ''
@@ -54,6 +54,21 @@ environments:
     default: 2 Aug 2021
     type: string
     name: Timestamp Field
+  - key: AUTHENTICATION_BEARER
+    description: Connection requires authentication via bearer token
+    value: ''
+    default: no
+    type: enum
+    options:
+      - yes
+      - no
+    name: Authentiocation Bearer   
+  - key: AUTHENTICATION_TOKEN
+    description: Authentication token for authorization
+    value: ''
+    default: ''
+    type: string
+    name: Authentication token
 commands: []
 document:
   ports: []

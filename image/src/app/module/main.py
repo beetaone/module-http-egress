@@ -34,18 +34,20 @@ def module_main(parsed_data):
             return_body = []
             for data in parsed_data:
                 return_body.append(processData(data))
-
-        if METHOD == "POST":
-            if APPLICATION['CONTENT_TYPE_JSON']=='no':
-                post(url=f"{EGRESS_WEBHOOK_URL}", json=return_body)
-            else:
-                post(url=f"{EGRESS_WEBHOOK_URL}", json=return_body,headers={'Content-Type': 'application/json'})                
+        # set header if necessary
+        headers={}
+        if APPLICATION['CONTENT_TYPE_JSON']=='yes':
+            headers.update({'Content-Type': 'application/json'})
+        if APPLICATION['AUTHENTICATION_BEARER']=='yes' and APPLICATION['AUTHENTICATION_TOKEN']!='':
+            headers.update({"Authorization": f"Bearer {APPLICATION['AUTHENTICATION_TOKEN']}"})
+        if METHOD == "POST":            
+            post(url=f"{EGRESS_WEBHOOK_URL}", json=return_body,headers=headers)
         elif METHOD == "GET":
             if type(parsed_data) == dict:
-                get(url=f"{EGRESS_WEBHOOK_URL}", params=return_body)
+                get(url=f"{EGRESS_WEBHOOK_URL}", params=return_body,headers=headers)
             else:
                 get(url=f"{EGRESS_WEBHOOK_URL}",
-                    params={"data": dumps(return_body)})
+                    params={"data": dumps(return_body)},headers=headers)
 
         return return_body, None
     except Exception:

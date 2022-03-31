@@ -9,5 +9,7 @@ APPLICATION = {
     "METHOD": env("METHOD", "POST"),
     "LABELS": env("LABELS", ""),
     "TIMESTAMP": env("TIMESTAMP", "timestamp"),
-    "CONTENT_TYPE_JSON":env("CONTENT_TYPE_JSON", "no")
+    "CONTENT_TYPE_JSON" : env("CONTENT_TYPE_JSON", "no"),
+    "AUTHENTICATION_BEARER" : env("AUTHENTICATION_BEARER", "yes"),
+    "AUTHENTICATION_TOKEN" : env("AUTHENTICATION_TOKEN", "123"),
 }
