@@ -57,8 +57,9 @@ Moreover, other features required for establishing the inter-container communica
 | INGRESS_PORT          | string | Port to which data will be ingressed             |
 | INGRESS_PATH          | string | Path to which data will be ingressed             |
 | CONTENT_TYPE_JSON          | string | Determines if during request 'Content-Type': 'application/json' will be passed on in request or not, default is no           |
-| AUTHENTICATION_BEARER          | enum | Determines if during request authentication is required           |
-| AUTHENTICATION_TOKEN          | string | If authentication is required this is the input for bearer token           |
+| AUTHENTICATION_REQUIRED          | enum | Determines if during request authentication is required           |
+| AUTHENTICATION_TOKEN          | string | If authentication is required this is the input for token, it also requires method like Basic or Bearer for example: Barer adhjaskjhjd-dsfdsfjsdkjf#42389dfsajfd==           |
+| AUTHENTICATION_API_KEY          | string | If we need to specify authentication X-API-TOKEN, here users can enter it|
 
 
 ## Dependencies

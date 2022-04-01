@@ -54,7 +54,7 @@ environments:
     default: 2 Aug 2021
     type: string
     name: Timestamp Field
-  - key: AUTHENTICATION_BEARER
+  - key: AUTHENTICATION_REQUIRED
     description: Connection requires authentication via bearer token
     value: ''
     default: no
@@ -69,6 +69,12 @@ environments:
     default: ''
     type: string
     name: Authentication token
+  - key: AUTHENTICATION_API_KEY
+    description: Authentication API key if required
+    value: ''
+    default: ''
+    type: string
+    name: Authentication API key
 commands: []
 document:
   ports: []

@@ -38,8 +38,10 @@ def module_main(parsed_data):
         headers={}
         if APPLICATION['CONTENT_TYPE_JSON']=='yes':
             headers.update({'Content-Type': 'application/json'})
-        if APPLICATION['AUTHENTICATION_BEARER']=='yes' and APPLICATION['AUTHENTICATION_TOKEN']!='':
-            headers.update({"Authorization": f"Bearer {APPLICATION['AUTHENTICATION_TOKEN']}"})
+        if APPLICATION['AUTHENTICATION_REQUIRED']=='yes' and APPLICATION['AUTHENTICATION_TOKEN']!='':
+            headers.update({"Authorization": f"{APPLICATION['AUTHENTICATION_TOKEN']}"})
+        if APPLICATION['AUTHENTICATION_API_KEY']!='':
+            headers.update({'x-api-key': APPLICATION['AUTHENTICATION_API_KEY']})
         if METHOD == "POST":            
             post(url=f"{EGRESS_WEBHOOK_URL}", json=return_body,headers=headers)
         elif METHOD == "GET":
