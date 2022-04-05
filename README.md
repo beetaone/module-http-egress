@@ -60,7 +60,7 @@ Moreover, other features required for establishing the inter-container communica
 | AUTHENTICATION_REQUIRED          | enum | Determines if during request authentication is required           |
 | AUTHENTICATION_TOKEN          | string | If authentication is required this is the input for token, it also requires method like Basic or Bearer for example: Barer adhjaskjhjd-dsfdsfjsdkjf#42389dfsajfd==           |
 | AUTHENTICATION_API_KEY          | string | If we need to specify authentication X-API-TOKEN, here users can enter it|
-
+| ERROR_URL          | string | If specified, during request if call fails, to this URL we pass error code, url and payload sent|
 
 ## Dependencies
 

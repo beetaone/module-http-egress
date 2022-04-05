@@ -75,6 +75,12 @@ environments:
     default: ''
     type: string
     name: Authentication API key
+  - key: ERROR_URL
+    description: URL for reporting error if request fails
+    value: ''
+    default: ''
+    type: string
+    name: Error reporting URL
 commands: []
 document:
   ports: []
