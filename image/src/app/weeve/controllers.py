@@ -33,7 +33,7 @@ def main_routes(app: Flask):
         received_data = request.get_json(force=True)
 
         parsed_data, err = data_validation(received_data)
-
+        
         if err:
             app.logger.error('Error: %s', err)
             return err, HTTP_CODES['INTERNAL_SERVER_ERROR']
