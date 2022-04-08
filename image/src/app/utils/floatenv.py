@@ -3,7 +3,7 @@ import os
 
 
 def floatenv(name: str, default=0.0) -> float:
-    """ return value from float environment variable otherwise False
+    """return value from float environment variable otherwise False
 
     Args:
         name (str): [ENVIRONMENT_VARIABLE]

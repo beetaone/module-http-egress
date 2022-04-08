@@ -1,7 +1,9 @@
-from requests import post, get
-from app.config import APPLICATION
 import time
 from json import dumps
+
+from app.config import APPLICATION
+from requests import get, post
+
 """
 All logic related to the module's main application
 Mostly only this file requires changes
@@ -35,27 +37,26 @@ def module_main(parsed_data):
             for data in parsed_data:
                 return_body.append(processData(data))
         # set header if necessary
-        headers={}
-        if APPLICATION['CONTENT_TYPE_JSON']=='yes':
+        headers = {}
+        if APPLICATION['CONTENT_TYPE_JSON'] == 'yes':
             headers.update({'Content-Type': 'application/json'})
-        if APPLICATION['AUTHENTICATION_REQUIRED']=='yes' and APPLICATION['AUTHENTICATION_TOKEN']!='':
-            headers.update({"Authorization": f"{APPLICATION['AUTHENTICATION_TOKEN']}"})
-        if APPLICATION['AUTHENTICATION_API_KEY']!='':
+        if APPLICATION['AUTHENTICATION_REQUIRED'] == 'yes' and APPLICATION['ACCESS_TOKEN'] != '':
+            headers.update({"Authorization": f"{APPLICATION['ACCESS_TOKEN']}"})
+        if APPLICATION['AUTHENTICATION_API_KEY'] != '':
             headers.update({'x-api-key': APPLICATION['AUTHENTICATION_API_KEY']})
-        if METHOD == "POST":            
-            r=post(url=f"{EGRESS_WEBHOOK_URL}", json=return_body,headers=headers)
+        if METHOD == "POST":
+            r = post(url=f"{EGRESS_WEBHOOK_URL}", json=return_body, headers=headers)
         elif METHOD == "GET":
             if type(parsed_data) == dict:
-                r=get(url=f"{EGRESS_WEBHOOK_URL}", params=return_body,headers=headers)
+                r = get(url=f"{EGRESS_WEBHOOK_URL}", params=return_body, headers=headers)
             else:
-                r=get(url=f"{EGRESS_WEBHOOK_URL}",
-                    params={"data": dumps(return_body)},headers=headers)
-        if not r.ok and APPLICATION['ERROR_URL']!='':
-            info={
-                "url":EGRESS_WEBHOOK_URL,
-                "data":return_body,
-                "errorCode":r.status_code
-            }
+                r = get(
+                    url=f"{EGRESS_WEBHOOK_URL}",
+                    params={"data": dumps(return_body)},
+                    headers=headers,
+                )
+        if not r.ok and APPLICATION['ERROR_URL'] != '':
+            info = {"url": EGRESS_WEBHOOK_URL, "data": return_body, "errorCode": r.status_code}
             post(url=f"{APPLICATION['ERROR_URL']}", json=info)
         return return_body, None
     except Exception:

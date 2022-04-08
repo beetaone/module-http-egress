@@ -1,7 +1,9 @@
 """logging configurations"""
-from logging import basicConfig, DEBUG
+from logging import DEBUG, basicConfig
 
 
 def configure_logging():
     basicConfig(
-        level=DEBUG, format="{'levelname': '%(levelname)s', 'asctime': '%(asctime)s', 'name': '%(name)s', 'message': '%(message)s'}")
+        level=DEBUG,
+        format="{'levelname': '%(levelname)s', 'asctime': '%(asctime)s', 'name': '%(name)s', 'message': '%(message)s'}",
+    )

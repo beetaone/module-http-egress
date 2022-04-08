@@ -8,5 +8,5 @@ WEEVE = {
     "MODULE_TYPE": env("MODULE_TYPE", "EGRESS"),
     "INGRESS_HOST": env("INGRESS_HOST", "0.0.0.0"),
     "INGRESS_PORT": env("INGRESS_PORT", "80"),
-    "INGRESS_PATH": env("INGRESS_PATH", "/")
+    "INGRESS_PATH": env("INGRESS_PATH", "/"),
 }

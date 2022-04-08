@@ -2,16 +2,16 @@
 Main flask entry point
 """
 from logging import getLogger
-from flask import Flask
 
 from app.config import WEEVE
 from app.weeve import main_routes, stat_routes
+from flask import Flask
 
 log = getLogger(__name__)
 
 
 def create_app() -> Flask:
-    """ Configures the flask ap and returns it
+    """Configures the flask ap and returns it
 
     Returns:
         Flask: [Flask app]
@@ -23,7 +23,7 @@ def create_app() -> Flask:
 
 
 def set_routes(app: Flask):
-    """ Sets routs for the flask app
+    """Sets routs for the flask app
 
     Args:
         app (Flask): [Flask]

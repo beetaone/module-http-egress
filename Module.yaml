@@ -63,7 +63,7 @@ environments:
       - yes
       - no
     name: Authentiocation Bearer   
-  - key: AUTHENTICATION_TOKEN
+  - key: ACCESS_TOKEN
     description: Authentication token for authorization
     value: ''
     default: ''
