@@ -62,7 +62,7 @@ environments:
     options:
       - yes
       - no
-    name: Authentiocation Bearer   
+    name: Authentication Bearer   
   - key: ACCESS_TOKEN
     description: Authentication token for authorization
     value: ''
