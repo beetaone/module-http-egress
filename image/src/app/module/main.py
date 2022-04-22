@@ -37,7 +37,7 @@ def module_main(parsed_data):
             for data in parsed_data:
                 return_body.append(processData(data))
         # set header if necessary
-        headers = {}
+        headers = {}        
         if APPLICATION['CONTENT_TYPE_JSON'] == 'yes':
             headers.update({'Content-Type': 'application/json'})
         if APPLICATION['AUTHENTICATION_REQUIRED'] == 'yes' and APPLICATION['ACCESS_TOKEN'] != '':
@@ -58,6 +58,8 @@ def module_main(parsed_data):
         if not r.ok and APPLICATION['ERROR_URL'] != '':
             info = {"url": EGRESS_WEBHOOK_URL, "data": return_body, "errorCode": r.status_code}
             post(url=f"{APPLICATION['ERROR_URL']}", json=info)
+        elif not r.ok: 
+            return None, f'Unable to transfer data: {r.status_code}'
         return return_body, None
     except Exception:
         return None, "Unable to perform the module logic"
@@ -72,7 +74,6 @@ def processData(parsed_data):
                 return_body[label] = parsed_data[label]
     else:
         return_body = parsed_data
-
     # add timestamp
     if not TIMESTAMP:
         return_body['timestamp'] = time.time()
