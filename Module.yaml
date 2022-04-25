@@ -33,6 +33,15 @@ environments:
       - POST
       - GET
     name: Method
+  - key: CONTENT_TYPE_JSON
+    description: Send JSON Content Type in Header of Request
+    value: ''
+    default: no
+    type: enum
+    options:
+      - yes
+      - no
+    name: Content Type as JSON
   - key: LABELS
     description: List of comma (,) separated labels to read from a previous module. Leave empty ("") to keep all data.
     value: ''
@@ -45,6 +54,33 @@ environments:
     default: 2 Aug 2021
     type: string
     name: Timestamp Field
+  - key: AUTHENTICATION_REQUIRED
+    description: Connection requires authentication via bearer token
+    value: ''
+    default: no
+    type: enum
+    options:
+      - yes
+      - no
+    name: Authentication Bearer   
+  - key: ACCESS_TOKEN
+    description: Authentication token for authorization
+    value: ''
+    default: ''
+    type: string
+    name: Authentication token
+  - key: AUTHENTICATION_API_KEY
+    description: Authentication API key if required
+    value: ''
+    default: ''
+    type: string
+    name: Authentication API key
+  - key: ERROR_URL
+    description: URL for reporting error if request fails
+    value: ''
+    default: ''
+    type: string
+    name: Error reporting URL
 commands: []
 document:
   ports: []

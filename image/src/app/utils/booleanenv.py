@@ -3,7 +3,7 @@ import os
 
 
 def boolenv(name: str) -> bool:
-    """ return value from boolena environment variable otherwise False
+    """return value from boolean  environment variable otherwise False
 
     Args:
         name (str): [ENVIRONMENT_VARIABLE]
