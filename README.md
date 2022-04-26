@@ -4,7 +4,7 @@
 | -------------- | ------------------------ |
 | Name           | HTTP Egress              |
 | Version        | v0.0.2                   |
-| Dockerhub Link | weevenetwork/http-egress |
+| Dockerhub Link | [weevenetwork/http-egress](https://hub.docker.com/r/weevenetwork/http-egress) |
 | Authors        | Jakub Grzelak            |
 
 - [HTTP Egress](#http-egress)
@@ -127,7 +127,7 @@ Example:
 ```yml
 version: "3"
 services:
-  webhook:
+  http-egress:
     image: weevenetwork/http-egress
     environment:
       MODULE_NAME: http-egress
