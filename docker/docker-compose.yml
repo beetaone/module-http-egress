@@ -1,13 +1,21 @@
 version: "3.0"
 services:
-  boilerplate:
+  http-egress:
     build:
       context: ../
       dockerfile: docker/Dockerfile
     environment:
-      MODULE_NAME: "boilerplate"
+      MODULE_NAME: "http-egress"
       MODULE_TYPE: "Output"
       INGRESS_HOST: "0.0.0.0"
-      INGRESS_PORT: "80"
+      INGRESS_PORT: 80
+      EGRESS_WEBHOOK_URLS: "https://hookb.in/example1,https://hookb.in/example2"
+      METHOD: "POST"
+      CONTENT_TYPE_JSON: True
+      LABELS: "temperature"
+      AUTHENTICATION_REQUIRED: True
+      ACCESS_TOKEN: "token12345"
+      AUTHENTICATION_API_KEY: "api_key12345"
+      ERROR_URL: "http://error.endpoint/123"
     ports:
       - 80:80
