@@ -19,6 +19,10 @@ run_image:
 	docker run -p 80:80 --rm --env-file=./.env ${MODULE}:latest
 .phony: run_image
 
+debug_image:
+	docker run -p 80:80 --rm --env-file=./.env --entrypoint /bin/bash -it ${MODULE}:latest
+.phony: debug_image
+
 run_docker_compose:
 	docker-compose -f docker/docker-compose.yml up
 .phony: run_docker_compose
