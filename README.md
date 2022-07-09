@@ -3,7 +3,7 @@
 |                |                                       |
 | -------------- | ------------------------------------- |
 | Name           | HTTP Egress                           |
-| Version        | v2.0.0                                |
+| Version        | v1.0.0                                |
 | DockerHub      | [weevenetwork/http-egress](https://hub.docker.com/r/weevenetwork/http-egress) |
 | authors        | Jakub Grzelak, Mesud Pasic                    |
 
