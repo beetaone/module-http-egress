@@ -48,7 +48,7 @@ Other features required for establishing the inter-container communication betwe
 | Environment Variables | type   | Description                                    |
 | --------------------- | ------ | ---------------------------------------------- |
 | MODULE_NAME           | string | Name of the module                             |
-| MODULE_TYPE           | string | Type of the module (INGRESS, PROCESS, EGRESS)  |
+| MODULE_TYPE           | string | Type of the module (Input, Processing, Output)  |
 | INGRESS_HOST          | string | Host to which data will be received            |
 | INGRESS_PORT          | string | Port to which data will be received            |
 | LOG_LEVEL             | string | Allowed log levels: DEBUG, INFO, WARNING, ERROR, CRITICAL. Refer to `logging` package documentation. |
