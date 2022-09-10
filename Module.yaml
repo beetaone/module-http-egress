@@ -25,8 +25,8 @@ envs:                                   # Array of environment variables that wi
     value: 'POST'
     type: 'select'
     options:
-      - POST
-      - GET
+      - 'POST'
+      - 'GET'
     dependencies: []
   - name: Content Type as JSON
     key: CONTENT_TYPE_JSON
@@ -34,8 +34,8 @@ envs:                                   # Array of environment variables that wi
     value: True
     type: 'select'
     options:
-      - True
-      - False
+      - 'True'
+      - 'False'
     dependencies: []
   - name: Input Labels
     key: LABELS
@@ -50,8 +50,8 @@ envs:                                   # Array of environment variables that wi
     value: False
     type: 'select'
     options:
-      - True
-      - False
+      - 'True'
+      - 'False'
     dependencies: []
   - name: Authentication Token
     key: ACCESS_TOKEN
@@ -82,7 +82,7 @@ devices: []
 envDevices: []
 tags:               # Array of tags.
   - Python
-  - HTTP Egress
+  - HTTP-Egress
   - output
   - Send
   - data
