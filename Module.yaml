@@ -31,7 +31,7 @@ envs:                                   # Array of environment variables that wi
   - name: Content Type as JSON
     key: CONTENT_TYPE_JSON
     description: Send JSON Content Type in Header of Request.
-    value: True
+    value: 'True'
     type: 'select'
     options:
       - 'True'
@@ -47,7 +47,7 @@ envs:                                   # Array of environment variables that wi
   - name: Authentication Bearer
     key: AUTHENTICATION_REQUIRED
     description: Connection requires authentication via bearer token.
-    value: False
+    value: 'False'
     type: 'select'
     options:
       - 'True'
