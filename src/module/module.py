@@ -13,6 +13,10 @@ from json import dumps
 
 log = getLogger("module")
 
+if getenv("LABELS"):
+    LABELS = [label.strip() for label in getenv("LABELS").split(',')]
+else:
+    LABELS = None
 
 def module_main(received_data: any) -> str:
     """
@@ -97,9 +101,10 @@ def module_main(received_data: any) -> str:
 
 
 def processData(parsed_data):
+    global LABELS
     return_body = {}
-    if getenv("LABELS"):
-        for label in getenv("LABELS"):
+    if LABELS:
+        for label in LABELS:
             # check if selected input label is in input data
             if label in parsed_data.keys():
                 return_body[label] = parsed_data[label]
