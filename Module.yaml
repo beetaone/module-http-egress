@@ -30,7 +30,7 @@ envs:                                   # Array of environment variables that wi
     dependencies: []
   - name: Content Type as JSON
     key: CONTENT_TYPE_JSON
-    description: Send JSON Content Type in Header of Request.
+    description: Set Content Type Header to "application/json".
     value: 'True'
     type: 'select'
     options:
@@ -73,13 +73,11 @@ envs:                                   # Array of environment variables that wi
       value: 'True'
   - name: Error Reporting URL
     key: ERROR_URL
-    description: URL for reporting error if a sending request fails.
+    description: If set, errors will be reported to this URL. Otherwise to the previous module.
     value: ''
     type: 'text'
     options: []
-    dependencies:
-      key: AUTHENTICATION_REQUIRED
-      value: 'True'
+    dependencies: []
 ports: []
 envPorts: []
 mounts: []

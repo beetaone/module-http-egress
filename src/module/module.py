@@ -14,9 +14,10 @@ from json import dumps
 log = getLogger("module")
 
 if getenv("LABELS"):
-    LABELS = [label.strip() for label in getenv("LABELS").split(',')]
+    LABELS = [label.strip() for label in getenv("LABELS").split(",")]
 else:
     LABELS = None
+
 
 def module_main(received_data: any) -> str:
     """
@@ -53,9 +54,10 @@ def module_main(received_data: any) -> str:
         if getenv("AUTHENTICATION_API_KEY") != "":
             headers.update({"x-api-key": getenv("AUTHENTICATION_API_KEY")})
 
-
         # parse egress urls for fanout
-        urls = [url.strip() for url in getenv("EGRESS_WEBHOOK_URLS").strip(",").split(",")]
+        urls = [
+            url.strip() for url in getenv("EGRESS_WEBHOOK_URLS").strip(",").split(",")
+        ]
 
         # for collecting REST API POST responses
         failed_responses = []
@@ -69,30 +71,41 @@ def module_main(received_data: any) -> str:
                     if type(received_data) == dict:
                         response = get(url=url, params=return_body, headers=headers)
                     else:
-                        response = get(url=url, params={"data": dumps(return_body)}, headers=headers)
+                        response = get(
+                            url=url,
+                            params={"data": dumps(return_body)},
+                            headers=headers,
+                        )
 
-                log.debug(f"Sent data to url {url} | Response: {response.status_code} {response.reason}")
+                log.debug(
+                    f"Sent data to url {url} | Response: {response.status_code} {response.reason}"
+                )
 
                 if response.status_code != 200:
-                    failed_responses.append({
-                        "url": url,
-                        "status_code": response.status_code,
-                        "message": response.reason,
-                    })
+                    failed_responses.append(
+                        {
+                            "url": url,
+                            "status_code": response.status_code,
+                            "message": response.reason,
+                        }
+                    )
             except Exception as e:
                 log.error(f"Exception sending to {url}: {e}")
-                failed_responses.append({
+                failed_responses.append(
+                    {
                         "url": url,
                         "status_code": None,
                         "message": str(e),
-                    })
+                    }
+                )
 
-        if failed_responses and getenv("ERROR_URL") != "":
-            log.debug(f"Sending to ERROR URL: {getenv('ERROR_URL')}")
-            info = {"responses_log": failed_responses}
-            post(url=getenv("ERROR_URL"), json=info)
-        elif failed_responses:
-            return f"Unable to transfer data: {failed_responses}"
+        if failed_responses:
+            if getenv("ERROR_URL") != "":
+                log.debug(f"Sending to ERROR URL: {getenv('ERROR_URL')}")
+                info = {"responses_log": failed_responses}
+                post(url=getenv("ERROR_URL"), json=info)
+            else:
+                return f"Unable to transfer data: {failed_responses}"
 
         return None
 

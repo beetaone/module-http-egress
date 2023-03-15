@@ -10,6 +10,7 @@ from api import setup_logging
 setup_logging()
 log = getLogger("main")
 
+
 def main():
     log.info(
         "%s running on %s at port %s",
@@ -24,6 +25,7 @@ def main():
         port=getenv("INGRESS_PORT"),
         quiet=True,
     )
+
 
 if __name__ == "__main__":
     main()
