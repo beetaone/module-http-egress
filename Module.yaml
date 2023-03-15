@@ -59,21 +59,27 @@ envs:                                   # Array of environment variables that wi
     value: ''
     type: 'text'
     options: []
-    dependencies: []
+    dependencies:
+      key: AUTHENTICATION_REQUIRED
+      value: 'True'
   - name: Authentication API Key
     key: AUTHENTICATION_API_KEY
     description: Authentication API key if required.
     value: ''
     type: 'text'
     options: []
-    dependencies: []
+    dependencies:
+      key: AUTHENTICATION_REQUIRED
+      value: 'True'
   - name: Error Reporting URL
     key: ERROR_URL
     description: URL for reporting error if a sending request fails.
     value: ''
     type: 'text'
     options: []
-    dependencies: []
+    dependencies:
+      key: AUTHENTICATION_REQUIRED
+      value: 'True'
 ports: []
 envPorts: []
 mounts: []
