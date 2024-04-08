@@ -34,13 +34,13 @@ The following module configurations can be provided in a data service designer s
 | Environment Variables   | Type   | Description                                                                                                                                                        |
 | ----------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | EGRESS_WEBHOOK_URLS     | string | List of comma (,) separated HTTP addresses where data is sent.                                                                                                     |
-| METHOD                  | string | ReST API request method: POST or GET.                                                                                                                              |
+| METHOD                  | string | ReST API request method: POST, PUT, PATCH, DELETE or GET.                                                                                                          |
 | LABELS                  | string | List of comma (,) separated labels to read from a previous module. Leave empty ("") to keep all data.                                                              |
 | CONTENT_TYPE_JSON       | string | Determines if during request 'Content-Type': 'application/json' will be passed on in request or not, default is no                                                 |
 | AUTHENTICATION_REQUIRED | enum   | Determines if during request authentication is required                                                                                                            |
 | ACCESS_TOKEN            | string | If authentication is required this is the input for token, it also requires method like Basic or Bearer for example: Barer adhjaskjhjd-dsfdsfjsdkjf#42389dfsajfd== |
 | AUTHENTICATION_API_KEY  | string | If we need to specify authentication X-API-TOKEN, here users can enter it                                                                                          |
-| ERROR_URL               | string | If specified, the module will pass the error code, URL, and payload sent to this URL, instead of the previous module, if the HTTP request fails.                                                                   |
+| ERROR_URL               | string | If specified, the module will pass the error code, URL, and payload sent to this URL, instead of the previous module, if the HTTP request fails.                   |
 
 ### Set by the weeve Agent on the edge-node
 

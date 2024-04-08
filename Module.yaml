@@ -27,6 +27,10 @@ envs:                                   # Array of environment variables that wi
     options:
       - 'POST'
       - 'GET'
+      - 'PUT'
+      - 'PATCH'
+      - 'DELETE'
+
     dependencies: []
   - name: Content Type as JSON
     key: CONTENT_TYPE_JSON

@@ -8,7 +8,7 @@ Edit this file to implement your module.
 from os import getenv
 
 from logging import getLogger
-from requests import get, post
+from requests import get, post, put, patch, delete
 from json import dumps
 
 log = getLogger("module")
@@ -67,6 +67,12 @@ def module_main(received_data: any) -> str:
             try:
                 if getenv("METHOD") == "POST":
                     response = post(url=url, json=return_body, headers=headers)
+                if getenv("METHOD") == "PUT":
+                    response = put(url=url, json=return_body, headers=headers)
+                if getenv("METHOD") == "PATCH":
+                    response = patch(url=url, json=return_body, headers=headers)
+                if getenv("METHOD") == "DELETE":
+                    response = delete(url=url, json=return_body, headers=headers)
                 elif getenv("METHOD") == "GET":
                     if type(received_data) == dict:
                         response = get(url=url, params=return_body, headers=headers)
