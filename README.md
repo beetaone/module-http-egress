@@ -4,14 +4,14 @@
 | --------- | ----------------------------------------------------------------------------- |
 | Name      | HTTP Egress                                                                   |
 | Version   | v1.0.0                                                                        |
-| DockerHub | [weevenetwork/http-egress](https://hub.docker.com/r/weevenetwork/http-egress) |
+| DockerHub | [beetaone/http-egress](https://hub.docker.com/r/beetaone/http-egress) |
 | authors   | Jakub Grzelak, Mesud Pasic                                                    |
 
 - [HTTP Egress](#http-egress)
   - [Description](#description)
   - [Environment Variables](#environment-variables)
     - [Module Specific](#module-specific)
-    - [Set by the weeve Agent on the edge-node](#set-by-the-weeve-agent-on-the-edge-node)
+    - [Set by the beetaone Agent on the edge-node](#set-by-the-beetaone-agent-on-the-edge-node)
   - [Dependencies](#dependencies)
   - [Input](#input)
   - [Output](#output)
@@ -29,7 +29,7 @@ This module is containerized using Docker.
 
 ### Module Specific
 
-The following module configurations can be provided in a data service designer section on weeve platform:
+The following module configurations can be provided in a data service designer section on beetaone platform:
 
 | Environment Variables   | Type   | Description                                                                                                                                                        |
 | ----------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -42,9 +42,9 @@ The following module configurations can be provided in a data service designer s
 | AUTHENTICATION_API_KEY  | string | If we need to specify authentication X-API-TOKEN, here users can enter it                                                                                          |
 | ERROR_URL               | string | If specified, the module will pass the error code, URL, and payload sent to this URL, instead of the previous module, if the HTTP request fails.                   |
 
-### Set by the weeve Agent on the edge-node
+### Set by the beetaone Agent on the edge-node
 
-Other features required for establishing the inter-container communication between modules in a data service are set by weeve agent.
+Other features required for establishing the inter-container communication between modules in a data service are set by beetaone agent.
 
 | Environment Variables | type   | Description                                                                                          |
 | --------------------- | ------ | ---------------------------------------------------------------------------------------------------- |
